@@ -23,7 +23,7 @@ class Quantum_Dot:
     - eigen_energies() \
     - eigen_wavefunctions() \
     - evolution()'
-    
+
     # 1 Dimensional (dot)
     dim = 1
 
@@ -132,6 +132,26 @@ class Quantum_Dot:
 
         return self.Psi
 
+    def check_wavefunctions(self, psis = None):
+        if psis == None:
+            _psis = self.Psi
+        else:
+            _psis = psis
+
+        if _psis.all() == None:
+            print("Please provide wavefunction(s)")
+            return
+
+        index = 0
+        for psi in _psis:
+            sum = 0.0
+            for x in psi:
+                sum = sum + x
+
+            if 1.0 - sum > 0.01:
+                print("Psi failed at index " + str(index) + " with sum: " + str(sum))
+
+            index = index + 1
 
     def evolution(self, t_0, t_max, delta_t, psi_0 = None, hamil_0 = None, V_func = None, evolution_pre_func = None, evolution_post_func = None, step_pre_func = None, step_post_func = None, pre_evol_variables = None, **v_params):
         'Evolve the system according to some passed parameters and using a decorator function. \
