@@ -340,9 +340,9 @@ def main():
 
     dot.check_wavefunctions(precision=0.1)
 
-    import Dot_Plot
+    from Dot_Plot import simple_plot
 
-    Dot_Plot.simple_plot(dot.eigen_wavefunctions()[:, 0])
+    simple_plot(dot.eigen_wavefunctions()[:, 0])
 
 
 if __name__ == '__main__':
